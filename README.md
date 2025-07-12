@@ -28,16 +28,7 @@ I used:
 - `React Context API` to manage cart globally
 - `openfoodfacts.org` API via `allorigins.win` proxy to bypass CORS
 
-## Folder Structure :
-
-src/
-├── components/ # Navbar, ProductCard, Loader, FilterDrawer
-├── context/ # cartcontext.js (manages cart state)
-├── pages/ # Home.jsx, ProductDetail.jsx, CartPage.jsx
-├── App.jsx
-└── main.jsx
-
-## ⏱ Time Taken
+## Time Taken
 
 - Started: July 9, 2025
 - Completed: July 12, 2025

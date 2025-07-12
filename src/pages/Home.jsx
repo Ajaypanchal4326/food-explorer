@@ -42,7 +42,7 @@ const Home = () => {
     fetchProducts();
   }, [page]);
 
-  // 🌀 Infinite Scroll
+  // Infinite Scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -188,7 +188,7 @@ const Home = () => {
         onClear={onClear}
       />
 
-      {/* 📦 Product Grid */}
+      {/* Product Grid */}
       <div className="mt-6 mx-4 pt-28 md:pt-24 lg:pt-24 px-4 py-4 grid grid-cols-2 md:grid-cols-4 gap-6 min-h-screen">
         {sortedProducts.length > 0 ? (
           sortedProducts.map((product, index) => (

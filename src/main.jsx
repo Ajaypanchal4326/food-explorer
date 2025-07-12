@@ -10,7 +10,7 @@ import { CartProvider } from "./context/cartcontext"; // ✅ Create this file
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <CartProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/food-explorer">
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/product/:barcode" element={<ProductDetail />} />

@@ -34,6 +34,10 @@ I used:
 - Completed: July 12, 2025
 - Total time taken: 3 days
 
+## Live
+
+- https://github.com/Ajaypanchal4326/food-explorer
+
 ## Author
 
 - Ajay Panchal – https://www.linkedin.com/in/ajay-panchal-1b9936312

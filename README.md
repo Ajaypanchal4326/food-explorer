@@ -36,7 +36,7 @@ I used:
 
 ## Live
 
-- https://github.com/Ajaypanchal4326/food-explorer
+- https://ajaypanchal4326.github.io/food-explorer/
 
 ## Author
 

@@ -1,4 +1,10 @@
-import { FaSearch, FaBarcode, FaFilter, FaShoppingCart } from "react-icons/fa";
+import {
+  FaSearch,
+  FaBarcode,
+  FaFilter,
+  FaShoppingCart,
+  FaLeaf,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = ({
@@ -13,118 +19,212 @@ const Navbar = ({
   const navigate = useNavigate();
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-lime-200 shadow px-4 py-5">
-      {/* Desktop & Tablet Navbar */}
-      <div className="hidden md:flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-green-900">FoodExplorer</h1>
+    <nav className="fixed top-0 w-full z-50 bg-gradient-to-r from-green-50 via-lime-50 to-emerald-50 backdrop-blur-sm shadow-lg border-b border-green-100">
+      {/* Desktop Navbar */}
+      <div className="hidden lg:flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+        {/* Logo Section */}
+        <div className="flex items-center gap-2 group cursor-pointer">
+          <div className="p-2 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full shadow-md group-hover:shadow-lg transform group-hover:scale-105 transition-all duration-300">
+            <FaLeaf className="text-white text-lg" />
+          </div>
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-green-800 to-emerald-700 bg-clip-text text-transparent">
+            FoodExplorer
+          </h1>
+        </div>
 
         <div className="flex gap-4 items-center">
-          {/* Search inputs */}
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search by name"
-            className="border px-3 mr-1 py-2 rounded-md w-48"
-          />
-          <button
-            onClick={onSearchByName}
-            className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 mr-3 rounded-md"
-          >
-            <FaSearch />
-          </button>
+          {/* Search by Name */}
+          <div className="relative group">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search healthy foods..."
+              className="border-2 border-green-200 focus:border-green-400 focus:ring-2 focus:ring-green-200 px-4 py-2.5 rounded-full w-56 transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-md focus:outline-none placeholder-green-500"
+              onKeyPress={(e) => e.key === "Enter" && onSearchByName()}
+            />
+            <button
+              onClick={onSearchByName}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white p-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95"
+            >
+              <FaSearch className="text-sm" />
+            </button>
+          </div>
 
-          <input
-            type="text"
-            value={barcode}
-            onChange={(e) => setBarcode(e.target.value)}
-            placeholder="Search by barcode"
-            className="border px-3 py-2 mr-1 rounded-md w-48"
-          />
-          <button
-            onClick={onSearchByBarcode}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 mr-3 rounded-md"
-          >
-            <FaBarcode />
-          </button>
+          {/* Search by Barcode */}
+          <div className="relative group">
+            <input
+              type="text"
+              value={barcode}
+              onChange={(e) => setBarcode(e.target.value)}
+              placeholder="Scan product barcode..."
+              className="border-2 border-blue-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 px-4 py-2.5 rounded-full w-56 transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-md focus:outline-none placeholder-blue-500"
+              onKeyPress={(e) => e.key === "Enter" && onSearchByBarcode()}
+            />
+            <button
+              onClick={onSearchByBarcode}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white p-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95"
+            >
+              <FaBarcode className="text-sm" />
+            </button>
+          </div>
 
           {/* Filter Button */}
           <button
             onClick={onOpenFilter}
-            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md font-medium"
+            className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-2.5 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 shadow-sm"
           >
-            <FaFilter className="inline-block mr-1" /> Filter
+            <FaFilter className="text-sm" />
+            <span>Filter</span>
           </button>
 
           {/* Cart Button */}
           <button
             onClick={() => navigate("/cart")}
-            className="bg-gray-800 hover:bg-gray-600 text-white px-4 py-2 rounded-md font-medium shadow flex items-center gap-2 transition"
+            className="flex items-center gap-2 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white px-6 py-2.5 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 shadow-sm"
           >
-            <FaShoppingCart /> Cart
+            <FaShoppingCart className="text-sm" />
+            <span>Cart</span>
           </button>
         </div>
       </div>
 
-      {/*  Mobile Navbar */}
-      <div className="md:hidden">
-        {/* Header Row */}
-        <div className="flex items-center justify-between mb-3">
-          <h1 className="text-xl font-bold text-green-900">FoodExplorer</h1>
-
-          <div className="flex gap-2">
-            {/* Filter Button */}
-            <button
-              onClick={onOpenFilter}
-              className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-md text-sm font-semibold"
-            >
-              <FaFilter />
-              Filter
-            </button>
-
-            {/* Cart Icon Mobile */}
-            <button
-              onClick={() => navigate("/cart")}
-              className="bg-white hover:bg-lime-100 text-green-900 p-2 rounded-md shadow"
-            >
-              <FaShoppingCart />
-            </button>
+      {/* Tablet Navbar */}
+      <div className="hidden md:flex lg:hidden justify-between items-center px-4 py-3">
+        {/* Logo Section */}
+        <div className="flex items-center gap-2">
+          <div className="p-1.5 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full shadow-md">
+            <FaLeaf className="text-white text-sm" />
           </div>
+          <h1 className="text-xl font-bold bg-gradient-to-r from-green-800 to-emerald-700 bg-clip-text text-transparent">
+            FoodExplorer
+          </h1>
         </div>
 
-        {/* Search Bars Row */}
-        <div className="grid grid-cols-2 gap-2">
-          {/* Name */}
-          <div className="flex gap-1">
+        <div className="flex gap-3 items-center">
+          {/* Compact Search by Name */}
+          <div className="relative">
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Name"
-              className="w-full border px-2 py-2 rounded-md text-sm"
+              placeholder="Search foods..."
+              className="border-2 border-green-200 focus:border-green-400 focus:ring-1 focus:ring-green-200 px-3 py-2 pr-10 rounded-full w-40 text-sm transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-md focus:outline-none placeholder-green-500"
+              onKeyPress={(e) => e.key === "Enter" && onSearchByName()}
             />
             <button
               onClick={onSearchByName}
-              className="bg-orange-500 hover:bg-orange-600 text-white px-2 py-2 rounded-md"
+              className="absolute right-1.5 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white p-1.5 rounded-full transition-all duration-300 hover:shadow-md active:scale-95"
             >
-              <FaSearch />
+              <FaSearch className="text-xs" />
             </button>
           </div>
 
-          {/* Barcode */}
-          <div className="flex gap-1">
+          {/* Compact Search by Barcode */}
+          <div className="relative">
             <input
               type="text"
               value={barcode}
               onChange={(e) => setBarcode(e.target.value)}
-              placeholder="Barcode"
-              className="w-full border px-2 py-2 rounded-md text-sm"
+              placeholder="Barcode..."
+              className="border-2 border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-200 px-3 py-2 pr-10 rounded-full w-32 text-sm transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-md focus:outline-none placeholder-blue-500"
+              onKeyPress={(e) => e.key === "Enter" && onSearchByBarcode()}
             />
             <button
               onClick={onSearchByBarcode}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-2 rounded-md"
+              className="absolute right-1.5 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white p-1.5 rounded-full transition-all duration-300 hover:shadow-md active:scale-95"
             >
-              <FaBarcode />
+              <FaBarcode className="text-xs" />
+            </button>
+          </div>
+
+          {/* Filter & Cart */}
+          <button
+            onClick={onOpenFilter}
+            className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white p-2.5 rounded-full transition-all duration-300 hover:shadow-md active:scale-95"
+          >
+            <FaFilter className="text-sm" />
+          </button>
+
+          <button
+            onClick={() => navigate("/cart")}
+            className="bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white p-2.5 rounded-full transition-all duration-300 hover:shadow-md active:scale-95"
+          >
+            <FaShoppingCart className="text-sm" />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navbar - Two Line Social Media Style */}
+      <div className="md:hidden px-4 py-3">
+        {/* Top Row - Logo and Action Buttons */}
+        <div className="flex items-center justify-between mb-3">
+          {/* Mobile Logo */}
+          <div className="flex items-center gap-2">
+            <div className="p-2 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full shadow-md">
+              <FaLeaf className="text-white text-base" />
+            </div>
+            <h1 className="text-xl font-bold bg-gradient-to-r from-green-800 to-emerald-700 bg-clip-text text-transparent">
+              FoodExplorer
+            </h1>
+          </div>
+
+          {/* Action Buttons Row */}
+          <div className="flex gap-2">
+            {/* Filter Button */}
+            <button
+              onClick={onOpenFilter}
+              className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
+            >
+              <FaFilter className="text-xs" />
+              <span>Filter</span>
+            </button>
+
+            {/* Cart Button */}
+            <button
+              onClick={() => navigate("/cart")}
+              className="bg-white hover:bg-gray-50 text-green-700 border-2 border-green-300 p-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 active:scale-95"
+            >
+              <FaShoppingCart className="text-base" />
+            </button>
+          </div>
+        </div>
+
+        {/* Bottom Row - Search Inputs */}
+        <div className="grid grid-cols-2 gap-3">
+          {/* Search by Name */}
+          <div className="relative">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search foods..."
+              className="w-full border-2 border-green-200 focus:border-green-400 focus:ring-2 focus:ring-green-200 px-4 py-3 pr-12 rounded-xl text-sm transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm hover:shadow-md focus:outline-none placeholder-green-600"
+              onKeyPress={(e) => e.key === "Enter" && onSearchByName()}
+            />
+            <button
+              onClick={onSearchByName}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white p-2 rounded-full transition-all duration-300 hover:shadow-lg active:scale-95"
+            >
+              <FaSearch className="text-sm" />
+            </button>
+          </div>
+
+          {/* Search by Barcode */}
+          <div className="relative">
+            <input
+              type="text"
+              value={barcode}
+              onChange={(e) => setBarcode(e.target.value)}
+              placeholder="Scan barcode..."
+              className="w-full border-2 border-blue-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 px-4 py-3 pr-12 rounded-xl text-sm transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm hover:shadow-md focus:outline-none placeholder-blue-600"
+              onKeyPress={(e) => e.key === "Enter" && onSearchByBarcode()}
+            />
+            <button
+              onClick={onSearchByBarcode}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white p-2 rounded-full transition-all duration-300 hover:shadow-lg active:scale-95"
+            >
+              <FaBarcode className="text-sm" />
             </button>
           </div>
         </div>
